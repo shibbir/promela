@@ -4,7 +4,7 @@
 
 mtype = {
 	speed0,		// set engine thrust to 0%, i.e. shut engine OFF
-	speed50,	// set engine thrust to 50%, i.. go ito descend mode
+	speed50,	// set engine thrust to 50%, i.e. go into descend mode
 	speed100,	// set engine thrust to 100%, i.e. go into climb mode
 	height0,
 	height50,
@@ -12,9 +12,8 @@ mtype = {
 };
 
 chan EngControlChan = [0] of { mtype };		// control channel for engine controller
-chan FmsSensorChan =  [0] of { mtype };		// sensor channel for flight mgmt system
+chan FmsSensorChan = [0] of { mtype };		// sensor channel for flight mgmt system
 chan FmsControlChan = [0] of { mtype };
-
 
 // --------------------------------------------------------------------------------------
 // Engine Control Process - sets the corresponding engine thrust levels received from FMS
@@ -25,11 +24,11 @@ ENG_OFF:
 	-> ctrl?speed100
 	-> goto ENG_FULL
 ENG_FULL:
-	printf("Engines full thrust\n")
+	printf("Engines Full Thrust\n")
 	-> ctrl?speed50
 	-> goto ENG_HALF
 ENG_HALF:
-	printf("Engines half thrust\n")
+	printf("Engines Half Thrust\n")
 	-> ctrl?speed0
 	-> goto ENG_OFF
 }

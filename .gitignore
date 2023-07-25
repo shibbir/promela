@@ -51,5 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# TCL files
+# Promela files
 *.tcl
+*.trail
+pan.*

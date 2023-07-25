@@ -24,7 +24,6 @@ chan FcsCtrlChan = [0] of { mtype, int, int };  // control channel from FMS to F
 chan FcsAcknChan = [0] of { mtype };		    // acknowledge channel from FS to FMS
 chan FmsCtrlChan = [0] of { mtype };		    // start channel to FMS
 
-
 // --------------------------------------------------------------------------------------
 // Flight Management System process - simulates the management of the flight acc. to plan
 // --------------------------------------------------------------------------------------
@@ -52,9 +51,9 @@ proctype Flight_Control_System(chan ctrl, ackn) {
 
 	for( i: 0 .. FP_LEN-1) {
 		ctrl?fcsCmdMsg(x, y)
-		-> fcs_x_position= fcs_x_position + x
-		-> fcs_y_position= fcs_y_position + y
-		-> printf("FCS position = (%d,%d)\n", fcs_x_position, fcs_y_position)
+		-> fcs_x_position = fcs_x_position + x
+		-> fcs_y_position = fcs_y_position + y
+		-> printf("FCS position = (%d, %d)\n", fcs_x_position, fcs_y_position)
 		-> ackn!fcsAckMsg;
 	}
 }
